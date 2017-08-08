@@ -40,9 +40,9 @@ function trim(str, type) {
  * 12
  */
 function strlen(str) {
-    var regch = /[\u4e00-\u9fa5]/;
-    var length = 0;
-    for (var i = 0; i < str.length; i++) {
+    let regch = /[\u4e00-\u9fa5]/;
+    let length = 0;
+    for (let i = 0; i < str.length; i++) {
         if (regch.test(str.charAt(i)) == true) {
             // 中文为2个字符
             length += 2;
@@ -66,7 +66,7 @@ function strlen(str) {
  */
 function changeCase(str, type) {
     function ToggleCase(str) {
-        var itemText = ""
+        let itemText = ""
         str.split("").forEach(
             function (item) {
                 if (/^([a-z]+)/.test(item)) {
@@ -112,8 +112,8 @@ function changeCase(str, type) {
  * abcabcabc
  */
 function repeatStr(str, count) {
-    var text = '';
-    for (var i = 0; i < count; i++) {
+    let text = '';
+    for (let i = 0; i < count; i++) {
         text += str;
     }
     return text;
@@ -141,14 +141,14 @@ function replaceAll(str, AFindText, ARepText) {
  * @returns {XML|string|void} 结果
  */
 function replaceStr(str, regArr, type, ARepText) {
-    var regtext = '', Reg = null, replaceText = ARepText || '*';
+    let regtext = '', Reg = null, replaceText = ARepText || '*';
     //replaceStr('18819322663',[3,5,3],0)
     //188*****663
     //repeatStr是在上面定义过的（字符串循环复制），大家注意哦
     if (regArr.length === 3 && type === 0) {
         regtext = '(\\w{' + regArr[0] + '})\\w{' + regArr[1] + '}(\\w{' + regArr[2] + '})'
         Reg = new RegExp(regtext);
-        var replaceCount = repeatStr(replaceText, regArr[1]);
+        let replaceCount = repeatStr(replaceText, regArr[1]);
         return str.replace(Reg, '$1' + replaceCount + '$2')
     }
     //replaceStr('asdasdasdaa',[3,5,3],1)
@@ -156,8 +156,8 @@ function replaceStr(str, regArr, type, ARepText) {
     else if (regArr.length === 3 && type === 1) {
         regtext = '\\w{' + regArr[0] + '}(\\w{' + regArr[1] + '})\\w{' + regArr[2] + '}'
         Reg = new RegExp(regtext);
-        var replaceCount1 = repeatSte(replaceText, regArr[0]);
-        var replaceCount2 = repeatSte(replaceText, regArr[2]);
+        let replaceCount1 = repeatSte(replaceText, regArr[0]);
+        let replaceCount2 = repeatSte(replaceText, regArr[2]);
         return str.replace(Reg, replaceCount1 + '$1' + replaceCount2)
     }
     //replaceStr('1asd88465asdwqe3',[5],0)
@@ -165,7 +165,7 @@ function replaceStr(str, regArr, type, ARepText) {
     else if (regArr.length === 1 && type == 0) {
         regtext = '(^\\w{' + regArr[0] + '})'
         Reg = new RegExp(regtext);
-        var replaceCount = repeatSte(replaceText, regArr[0]);
+        let replaceCount = repeatSte(replaceText, regArr[0]);
         return str.replace(Reg, replaceCount)
     }
     //replaceStr('1asd88465asdwqe3',[5],1,'+')
@@ -173,7 +173,7 @@ function replaceStr(str, regArr, type, ARepText) {
     else if (regArr.length === 1 && type == 1) {
         regtext = '(\\w{' + regArr[0] + '}$)'
         Reg = new RegExp(regtext);
-        var replaceCount = repeatSte(replaceText, regArr[0]);
+        let replaceCount = repeatSte(replaceText, regArr[0]);
         return str.replace(Reg, replaceCount)
     }
 }
@@ -220,7 +220,7 @@ function checkType(str, type) {
  * 3(强度等级为3)
  */
 function checkPwd(str) {
-    var nowLv = 0;
+    let nowLv = 0;
     if (str.length < 6) {
         return nowLv
     }
@@ -260,7 +260,7 @@ function randomNumber(count) {
  * @param strSplit 字符
  * @returns {number} 返回出现的次数
  *
- * var strTest = 'sad44654blog5a1sd67as9dablog4s5d16zxc4sdweasjkblogwqepaskdkblogahseiuadbhjcibloguyeajzxkcabloguyiwezxc967'
+ * let strTest = 'sad44654blog5a1sd67as9dablog4s5d16zxc4sdweasjkblogwqepaskdkblogahseiuadbhjcibloguyeajzxkcabloguyiwezxc967'
  * countStr(strTest,'blog')
  * 6
  */
@@ -328,8 +328,8 @@ function minArr(arr) {
  * @returns {number}
  */
 function sumArr(arr) {
-    var sumText = 0;
-    for (var i = 0, len = arr.length; i < len; i++) {
+    let sumText = 0;
+    for (let i = 0, len = arr.length; i < len; i++) {
         sumText += arr[i];
     }
     return sumText
@@ -341,8 +341,8 @@ function sumArr(arr) {
  * @returns {number} 数组的平均数  返回的结果可能是多位，根据需求处理
  */
 function covArr(arr) {
-    var sumText = sumArr(arr);
-    var covText = sumText / length;
+    let sumText = sumArr(arr);
+    let covText = sumText / length;
     return covText
 }
 
@@ -371,8 +371,8 @@ function randomOne(arr) {
  * 2
  */
 function getEleCount(obj, ele) {
-    var num = 0;
-    for (var i = 0, len = obj.length; i < len; i++) {
+    let num = 0;
+    for (let i = 0, len = obj.length; i < len; i++) {
         if (ele == obj[i]) {
             num++;
         }
@@ -396,8 +396,8 @@ function getEleCount(obj, ele) {
  *
  */
 function getArrayNum(arr, n1, n2) {
-    var arr1 = [], len = n2 || arr.length - 1;
-    for (var i = n1; i <= len; i++) {
+    let arr1 = [], len = n2 || arr.length - 1;
+    for (let i = n1; i <= len; i++) {
         arr1.push(arr[i])
     }
     return arr1;
@@ -436,7 +436,7 @@ function removeArrayForValue(arr, val, type) {
  * @param iDay 保存天数
  */
 function setCookie(name, value, iDay) {
-    var oDate = new Date();
+    let oDate = new Date();
     oDate.setDate(oDate.getDate() + iDay);
     document.cookie = name + '=' + value + ';expires=' + oDate;
 }
@@ -448,9 +448,9 @@ function setCookie(name, value, iDay) {
  * @returns {*}
  */
 function getCookie(name) {
-    var arr = document.cookie.split('; ');
-    for (var i = 0; i < arr.length; i++) {
-        var arr2 = arr[i].split('=');
+    let arr = document.cookie.split('; ');
+    for (let i = 0; i < arr.length; i++) {
+        let arr2 = arr[i].split('=');
         if (arr2[0] == name) {
             return arr2[1];
         }
@@ -496,24 +496,24 @@ function filterParams(obj) {
  * -￥壹仟陆佰捌拾贰元整
  */
 function upDigit(n) {
-    var fraction = ['角', '分', '厘'];
-    var digit = ['零', '壹', '贰', '叁', '肆', '伍', '陆', '柒', '捌', '玖'];
-    var unit = [['元', '万', '亿'], ['', '拾', '佰', '仟']];
-    var head = n < 0 ? '￥-' : '￥';
+    let fraction = ['角', '分', '厘'];
+    let digit = ['零', '壹', '贰', '叁', '肆', '伍', '陆', '柒', '捌', '玖'];
+    let unit = [['元', '万', '亿'], ['', '拾', '佰', '仟']];
+    let head = n < 0 ? '￥-' : '￥';
     n = Math.abs(n);
-    var s = '';
-    for (var i = 0; i < fraction.length; i++) {
+    let s = '';
+    for (let i = 0; i < fraction.length; i++) {
         s += (digit[Math.floor(n * 10 * Math.pow(10, i)) % 10] + fraction[i]).replace(/零./, '');
     }
     s = s || '整';
     n = Math.floor(n);
-    for (var i = 0; i < unit[0].length && n > 0; i++) {
-        var p = '';
-        for (var j = 0; j < unit[1].length && n > 0; j++) {
+    for (let i = 0; i < unit[0].length && n > 0; i++) {
+        let p = '';
+        for (let j = 0; j < unit[1].length && n > 0; j++) {
             p = digit[n % 10] + unit[1][j] + p;
             n = Math.floor(n / 10);
         }
-        //s = p.replace(/(零.)*零$/, '').replace(/^$/, '零')+ unit[0][i] + s; 
+        //s = p.replace(/(零.)*零$/, '').replace(/^$/, '零')+ unit[0][i] + s;
         s = p + unit[0][i] + s;
     }
     return head + s.replace(/(零.)*零元/, '元').replace(/(零.)+/g, '零').replace(/^整$/, '零元整');
@@ -598,8 +598,8 @@ function randomColor() {
     //return '#'+Math.random().toString(16).substring(2).substr(0,6);
 
     //写法3
-    var color = '#';
-    for (var i = 0; i < 6; i++) {
+    let color = '#';
+    for (let i = 0; i < 6; i++) {
         color += '0123456789abcdef'[randomNumber(15)];
     }
     return color;
@@ -617,10 +617,10 @@ function randomColor() {
  * "剩余时间6天 2小时 28 分钟20 秒"
  */
 function getEndTime(endTime) {
-    var startDate = new Date();  //开始时间，当前时间
-    var endDate = new Date(endTime); //结束时间，需传入时间参数
-    var t = endDate.getTime() - startDate.getTime();  //时间差的毫秒数
-    var d = 0, h = 0, m = 0, s = 0;
+    let startDate = new Date();  //开始时间，当前时间
+    let endDate = new Date(endTime); //结束时间，需传入时间参数
+    let t = endDate.getTime() - startDate.getTime();  //时间差的毫秒数
+    let d = 0, h = 0, m = 0, s = 0;
     if (t >= 0) {
         d = Math.floor(t / 1000 / 3600 / 24);
         h = Math.floor(t / 1000 / 60 / 60 % 24);
@@ -630,24 +630,23 @@ function getEndTime(endTime) {
     return d + "天" + h + "小时 " + m + " 分钟" + s + " 秒";
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/**
+ * 文件类型检测
+ * @param url  文件路径带后缀
+ * @param type 检测类型
+ * @returns {boolean}  返回true false
+ */
+function checkFileType(url, type) {
+    let url = url.toLowerCase() || '',
+        type = type.toLowerCase() || '',
+        point = url.lastIndexOf("."),
+        filetype = url.substr(point);
+    if (type.indexOf(filetype) < 0 || url == "") {
+        return false;
+    } else {
+        return true;
+    }
+}
 
 
 
